@@ -9,13 +9,14 @@ var counter = countstart;
 
 function starttimer () // timer wont start until this is run (hopefully)
 {
+	clearInterval(counter);
 	count = countstart;
-	counter=setInterval(timer, 900); //1000 will  run it every 1 second
+	counter = setInterval(timer, 900); //1000 will  run it every 1 second
 }
 
 function timer()
 {
-  count=count-1;
+  count = count-1;
   if (count <= -1)
   {
      clearInterval(counter);
@@ -27,7 +28,6 @@ function timer()
  document.getElementById('countdown').innerHTML="Time Left : " + count;
  
 }
-
 
 
 var AlienFlock = function AlienFlock() { // the whole block of aliens
@@ -43,6 +43,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
   this.die = function() {
     if(Game.board.nextLevel()) {
       Game.loadBoard(new GameBoard(Game.board.nextLevel())); 
+	  count = count + 10;
     } else {
       Game.callbacks['win']();
 	  
@@ -183,7 +184,7 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 150) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 6) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
