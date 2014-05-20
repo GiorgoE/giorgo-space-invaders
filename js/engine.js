@@ -1,5 +1,5 @@
 var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 38:'up', 39:'right', 32 :'fire', 40:'down' };
+  var KEY_CODES = { 37:'left', 38:'up', 39:'right', 32 :'fire', 40:'down', 83 :'start'};
   this.keys = {};
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
@@ -51,7 +51,7 @@ var Sprites = new function() {
 
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
-    if(Game.keys['fire'] && callback) callback();
+    if(Game.keys['start'] && callback) callback();
   };
 
   this.render = function(canvas) {
