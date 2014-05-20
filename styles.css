@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+#gameboard { background-color:black; }
+
+#game-wrapper { margin:0 auto 0 auto; width: 1000px; }
+	  
+body {
+	color: #FFF;
+	background-color: #333;
+}
+
