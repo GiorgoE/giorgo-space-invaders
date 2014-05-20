@@ -1,5 +1,6 @@
 
 var score = 0; // starting score
+var highscore = 0; //high score
 
 var AlienFlock = function AlienFlock() { // the whole block of aliens
   this.invulnrable = true; // is invulnerable
@@ -16,6 +17,16 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
       Game.loadBoard(new GameBoard(Game.board.nextLevel())); 
     } else {
       Game.callbacks['win']();
+	  
+	  //added high score at end game
+	  if (score > highscore) {
+		  highscore = score;
+	  }
+	  
+	   document.getElementById('highscore').innerHTML="High Score :" + highscore;
+	  // score reset
+	  score = 0;
+	  
     }
   }
 
