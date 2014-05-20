@@ -24,7 +24,7 @@ function timer()
      return;
   }
   //put count number into html
- document.getElementById('countdown').innerHTML="Time Left :" + count;
+ document.getElementById('countdown').innerHTML="Time Left : " + count;
  
 }
 
@@ -52,7 +52,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 	  }
 	  
 	  // inserts score to html
-	   document.getElementById('highscore').innerHTML="High Score :" + highscore;
+	   document.getElementById('highscore').innerHTML="High Score : " + highscore;
 	   
 	  // score reset
 	  score = 0;
@@ -108,8 +108,8 @@ Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
-  score = score + 1;
-  document.getElementById('score').innerHTML="Score :" + score;
+  score = score + (1*count);
+  document.getElementById('score').innerHTML="Score : " + score;
 }
 
 // dont know yet
@@ -162,7 +162,7 @@ Player.prototype.die = function() {
 	  }
 	  
 	  // inserts score to html
-	   document.getElementById('highscore').innerHTML="High Score :" + highscore;
+	   document.getElementById('highscore').innerHTML="High Score : " + highscore;
 	   
 	  // score reset
 	  score = 0;
