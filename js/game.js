@@ -23,7 +23,9 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 		  highscore = score;
 	  }
 	  
+	  // inserts score to html
 	   document.getElementById('highscore').innerHTML="High Score :" + highscore;
+	   
 	  // score reset
 	  score = 0;
 	  
@@ -117,9 +119,21 @@ Player.prototype.draw = function(canvas) {
 }
 
 // when player dies play die audio and run die function.
+//Also now update highscore and reset score
 Player.prototype.die = function() {
   GameAudio.play('die');
   Game.callbacks['die']();
+  
+  //added high score at end game
+	  if (score > highscore) {
+		  highscore = score;
+	  }
+	  
+	  // inserts score to html
+	   document.getElementById('highscore').innerHTML="High Score :" + highscore;
+	   
+	  // score reset
+	  score = 0;
 }
 
 
