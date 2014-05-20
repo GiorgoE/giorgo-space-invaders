@@ -2,6 +2,25 @@
 var score = 0; // starting score
 var highscore = 0; //high score
 
+
+var count=10; // countdown timer
+
+var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+function timer()
+{
+  count=count-1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     //counter ended, player dies
+	 Player.prototype.die();
+     return;
+  }
+ document.getElementById('countdown').innerHTML="Time Left :" + count;
+  
+}
+
 var AlienFlock = function AlienFlock() { // the whole block of aliens
   this.invulnrable = true; // is invulnerable
   this.dx = 10; this.dy = 0; 
