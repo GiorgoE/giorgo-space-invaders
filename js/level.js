@@ -33,7 +33,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Alien Invaders","press S to start",
+    var screen = new GameScreen("Alien Invaders","press s to start",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
 									 starttimer ();
