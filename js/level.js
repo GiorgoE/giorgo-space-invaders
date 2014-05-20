@@ -36,6 +36,7 @@
     var screen = new GameScreen("Alien Invaders","press space to start",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
+									 starttimer ();
                                  });
     Game.loadBoard(screen);
     Game.loop();
@@ -45,6 +46,7 @@
     var screen = new GameScreen("Game Over","(press space to restart)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
+									 starttimer();
                                  });
     Game.loadBoard(screen);
   }

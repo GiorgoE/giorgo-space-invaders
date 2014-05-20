@@ -2,24 +2,33 @@
 var score = 0; // starting score
 var highscore = 0; //high score
 
+var countstart = 11; // start time
+var count=countstart; // countdown timer
 
-var count=10; // countdown timer
+var counter = countstart;
 
-var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+function starttimer () // timer wont start until this is run (hopefully)
+{
+	count = countstart;
+	counter=setInterval(timer, 900); //1000 will  run it every 1 second
+}
 
 function timer()
 {
   count=count-1;
-  if (count <= 0)
+  if (count <= -1)
   {
      clearInterval(counter);
      //counter ended, player dies
 	 Player.prototype.die();
      return;
   }
+  //put count number into html
  document.getElementById('countdown').innerHTML="Time Left :" + count;
-  
+ 
 }
+
+
 
 var AlienFlock = function AlienFlock() { // the whole block of aliens
   this.invulnrable = true; // is invulnerable
@@ -37,7 +46,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
     } else {
       Game.callbacks['win']();
 	  
-	  //added high score at end game
+	  //added high score at win game
 	  if (score > highscore) {
 		  highscore = score;
 	  }
@@ -50,8 +59,9 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 	  
     }
   }
+  
 
-  //
+  // Dont know what this does yet
   this.step = function(dt) { 
     if(this.hit && this.hit != this.lastHit) {
       this.lastHit = this.hit;
@@ -80,16 +90,17 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 }
 
 
-
+// dont know yet
 var Alien = function Alien(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
   this.mx = 0;
 }
 
-//draw alien sprites to canvas
+//draw alien sprites to canvas every frame
 Alien.prototype.draw = function(canvas) {
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
+  
 }
 
 // when alien dies play die sound, increase flock speed, remove alien from board, +1 to score, update the score in the html
@@ -101,7 +112,7 @@ Alien.prototype.die = function() {
   document.getElementById('score').innerHTML="Score :" + score;
 }
 
-
+// dont know yet
 Alien.prototype.step = function(dt) {
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
@@ -127,7 +138,7 @@ Alien.prototype.fireSometimes = function() {
       }
 }
 
-
+//dont know yet
 var Player = function Player(opts) { 
   this.reloading = 0;
 }
@@ -135,6 +146,8 @@ var Player = function Player(opts) {
 // draw player sprite to canvas
 Player.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'player',this.x,this.y);
+   
+   
 }
 
 // when player dies play die audio and run die function.
@@ -143,7 +156,7 @@ Player.prototype.die = function() {
   GameAudio.play('die');
   Game.callbacks['die']();
   
-  //added high score at end game
+  //added high score at lose game
 	  if (score > highscore) {
 		  highscore = score;
 	  }
@@ -155,7 +168,7 @@ Player.prototype.die = function() {
 	  score = 0;
 }
 
-
+// sets what the keys do, adds constraints
 Player.prototype.step = function(dt) {
   if(Game.keys['left']) { this.x -= 300 * dt; }
   if(Game.keys['right']) { this.x += 300 * dt; }

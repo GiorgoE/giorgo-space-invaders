@@ -19,6 +19,8 @@ var Game = new function() {
     this.level_data = level_data;
     this.callbacks = callbacks;
     Sprites.load(sprite_data,this.callbacks['start']);
+	
+	
   };
 
   this.loadBoard = function(board) { Game.board = board; };
@@ -126,6 +128,7 @@ var GameBoard = function GameBoard(level_number) {
   };
 
   this.loadLevel = function(level) {
+	// starttimer () // possible place to put start timer
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
@@ -143,6 +146,7 @@ var GameBoard = function GameBoard(level_number) {
         }
       }
     }
+   
   };
 
   this.nextLevel = function() { 
