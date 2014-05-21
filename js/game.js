@@ -7,6 +7,8 @@ var count=countstart; // countdown timer
 
 var counter = countstart;
 
+var cashpoints = 0;
+
 function starttimer () // timer wont start until this is run (hopefully)
 {
 	clearInterval(counter);
@@ -111,6 +113,8 @@ Alien.prototype.die = function() {
   this.board.remove(this);
   score = score + (1*count);
   document.getElementById('score').innerHTML="Score : " + score;
+  
+  
 }
 
 // dont know yet
@@ -151,17 +155,30 @@ Player.prototype.draw = function(canvas) {
    
 }
 
+function addcashpoints () {
+	//Add Cash Points
+  cashpoints = cashpoints + score;
+  document.getElementById('cashpoints').innerHTML="Cash Points : " + cashpoints;
+	
+}
+
+function cashpointsDisplay () {
+	ctx.font = "bold 14px Arial";
+    ctx.fillText("Cash Points : " + cashpoints, 80, 20);
+}
+
 // when player dies play die audio and run die function.
 //Also now update highscore and reset score
 Player.prototype.die = function() {
   GameAudio.play('die');
   Game.callbacks['die']();
+  addcashpoints();
+  
   
   //added high score at lose game
 	  if (score > highscore) {
 		  highscore = score;
 	  }
-	  
 	  // inserts score to html
 	   document.getElementById('highscore').innerHTML="High Score : " + highscore;
 	   

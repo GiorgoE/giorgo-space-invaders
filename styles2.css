@@ -1,15 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
-#gameboard { background-color:transparent; }
+#gameboard { background-color:black; }
 
 #game-wrapper { margin:0 auto 0 auto; width: 1000px; }
 	  
 body {
 	color: #FFF;
-	background-color: #000;
-	background-image:url(images/bg.gif);
-	background-repeat: repeat;
+	background-color: #333;
 }
 
 #game-wrapper #score {
@@ -35,17 +33,6 @@ body {
 }
 
 #game-wrapper #countdown {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: 800;
-	color: #FFF;
-	text-align: left;
-	float: left;
-	visibility: visible;
-	padding-right: 30px;
-}
-
-#game-wrapper #cashpoints {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	font-weight: 800;
