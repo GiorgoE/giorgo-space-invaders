@@ -1,0 +1,7 @@
+Append winning score to cash points
+done
+
+how to make more than 1 type of alien
+" player
+" bullet
+

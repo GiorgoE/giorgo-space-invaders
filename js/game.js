@@ -9,12 +9,18 @@ var counter = countstart;
 
 var cashpoints = 0;
 
+
+
+///////////Custom Functions////////////
+
 function starttimer () // timer wont start until this is run (hopefully)
 {
 	clearInterval(counter);
 	count = countstart;
 	counter = setInterval(timer, 900); //1000 will  run it every 1 second
 }
+
+//////////// timer
 
 function timer()
 {
@@ -30,6 +36,27 @@ function timer()
  document.getElementById('countdown').innerHTML="Time Left : " + count;
  
 }
+
+//////////// cashpoints
+
+
+function addcashpoints () {
+	//Add Cash Points
+  cashpoints = cashpoints + score;
+  document.getElementById('cashpoints').innerHTML="Cash Points : " + cashpoints;
+	
+}
+
+//////////// Upgrade
+
+function shipupgrade () {
+	
+}
+
+
+
+///////////////////////
+
 
 
 var AlienFlock = function AlienFlock() { // the whole block of aliens
@@ -48,6 +75,9 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 	  count = count + 10;
     } else {
       Game.callbacks['win']();
+	  
+	   //add cashpoints when you win game
+	   addcashpoints(); 
 	  
 	  //added high score at win game
 	  if (score > highscore) {
@@ -136,12 +166,13 @@ Alien.prototype.step = function(dt) {
 
 // Alien will fire 10% of the time
 Alien.prototype.fireSometimes = function() {
-      if(Math.random()*100 < 10) {
+      if(Math.random()*100 < 3) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
       }
 }
+
 
 //dont know yet
 var Player = function Player(opts) { 
@@ -155,17 +186,6 @@ Player.prototype.draw = function(canvas) {
    
 }
 
-function addcashpoints () {
-	//Add Cash Points
-  cashpoints = cashpoints + score;
-  document.getElementById('cashpoints').innerHTML="Cash Points : " + cashpoints;
-	
-}
-
-function cashpointsDisplay () {
-	ctx.font = "bold 14px Arial";
-    ctx.fillText("Cash Points : " + cashpoints, 80, 20);
-}
 
 // when player dies play die audio and run die function.
 //Also now update highscore and reset score
@@ -201,7 +221,8 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 6) {
+ // if fire is pressed and reloading is <= 0 you are allowed to fire X missiles.
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 15) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
