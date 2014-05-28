@@ -78,12 +78,30 @@ body {
 	padding-right: 30px;
 }
 
+#bulletspeed {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	color: #FFF;
+	float: left;
+	visibility: visible;
+	padding-right: 30px;
+}
+
+#playerspeed {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 800;
+	color: #FFF;
+	float: left;
+	visibility: visible;
+	padding-right: 30px;
+}
 #scoresbox {
 	
 	background-color: transparent;	
 	width: auto;
 	height: 40px;
-	margin-left: 50%;
 }
 
 #upgradesbox {

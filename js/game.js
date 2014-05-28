@@ -2,7 +2,7 @@
 //Score Variables
 var score = 0; // starting score
 var highscore = 0; //high score
-var cashpoints = 0;
+var cashpoints = 3000;
 
 var countstart = 11; // start time
 var count=countstart; // countdown timer
@@ -17,15 +17,16 @@ var counter = countstart;
 var bulletcount = 3;
 var bulletupgradebought = false;
 
-var bulletspeed = 1;
-var bulletupgradebought = false;
+var bulletspeed = -200;
+var bulletspeedupgradebought = false;
 
-var playerspeed = 1;
-var playerspeedupgrade = false;
+var playerspeed = 200;
+var playerspeedupgradebought = false;
 
-
-
+var bulletinterval = 3;
+///////////////////////////////////////
 ///////////Custom Functions////////////
+//////////////////////////////////////
 
 function starttimer () // timer wont start until this is run (hopefully)
 {
@@ -61,7 +62,7 @@ function addcashpoints () {
 	
 }
 
-//////////// Upgrade
+//////////// Upgrades
 
 function bulletupgrade () {
 	
@@ -70,15 +71,15 @@ function bulletupgrade () {
 	cashpoints = cashpoints - 500;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
-	document.getElementById('bulletcount').innerHTML="1000 - Max Bullet Count";
+	document.getElementById('bulletcount').innerHTML="2000 : Max Bullet Count";
 	
 	bulletupgradebought = true;
 	alert('Bullet Count Bought');
 	
-	} else if (cashpoints >= 1000 && bulletupgradebought != false) {
+	} else if (cashpoints >= 2000 && bulletupgradebought != false) {
 		
 	bulletcount = bulletcount+5;
-	cashpoints = cashpoints - 1000;
+	cashpoints = cashpoints - 2000;
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletcount').innerHTML="Bullet Count Maxed";
 	
@@ -87,15 +88,55 @@ function bulletupgrade () {
 	}
 }
 
-function bulletspeedupgrade () {
-	if(cashpoints >= 500){
-	bulletcount = 15;
+
+function bulletspeedupgrade ()
+{
+		
+	if(cashpoints >= 500 && bulletspeedupgradebought != true)
+	{
+	bulletspeed = bulletspeed -100;
+	cashpoints = cashpoints - 500;
+	
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('bulletspeed').innerHTML="2000 : Max Bullet Speed";
+	
+	bulletspeedupgradebought = true;
+	alert('Bullet Speed Bought');
+	
+	} else if (cashpoints >= 2000 && bulletspeedupgradebought != false) {
+		
+	bulletspeed = bulletspeed -100;
+	cashpoints = cashpoints - 2000;
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('bulletspeed').innerHTML="Bullet Speed Maxed";
+	
+	alert('Bullet Speed Maxed');
 	}
 }
 
-function playerspeedupgrade () {
-	if(cashpoints >= 500){
-	bulletcount = 15;
+
+function playerspeedupgrade ()
+{
+		
+	if(cashpoints >= 1000 && playerspeedupgradebought != true)
+	{
+	playerspeed = playerspeed + 100;
+	cashpoints = cashpoints - 1000;
+	
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('playerspeed').innerHTML="3000 : Max Player Speed";
+	
+	playerspeedupgradebought = true;
+	alert('Player Speed Bought');
+	
+	} else if (cashpoints >= 3000 && playerspeedupgradebought != false) {
+		
+	playerspeed = playerspeed + 100;
+	cashpoints = cashpoints - 3000;
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('playerspeed').innerHTML="Player Speed Maxed";
+	
+	alert('Player Speed Maxed');
 	}
 }
 
@@ -223,7 +264,7 @@ Alien.prototype.fireSometimes = function() {
 
 //dont know yet
 var Player = function Player(opts) { 
-  this.reloading = 0;
+  this.reloading = 1;
 }
 
 // draw player sprite to canvas
@@ -255,8 +296,8 @@ Player.prototype.die = function() {
 
 // sets what the keys do, adds constraints
 Player.prototype.step = function(dt) {
-  if(Game.keys['left']) { this.x -= 300 * dt; }
-  if(Game.keys['right']) { this.x += 300 * dt; }
+  if(Game.keys['left']) { this.x -= playerspeed * dt; }
+  if(Game.keys['right']) { this.x += playerspeed * dt; }
   //if(Game.keys['down']) { this.y += 300 * dt; }
   //if(Game.keys['up']) { this.y -= 300 * dt; }
 
@@ -268,15 +309,15 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
- // if fire is pressed and reloading is <= 0 you are allowed to fire X missiles.
+ // if fire is pressed and reloading is <= 0 you are allowed to fire X missiles. Also Bullet speed
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < bulletcount) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
-                          { dy: -400, player: true });
+                          { dy: bulletspeed, player: true });
     this.board.missiles++;
-    this.reloading = 1;
+    this.reloading = bulletinterval;
   }
   return true;
 }
