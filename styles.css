@@ -153,19 +153,19 @@ body {
 #scoresbox {
 	
 	background-color: transparent;	
-	width: 90%;
+	width: 80%;
 	height: 40px;
 	margin: 0 auto 0 auto;
-	padding-left: 50px;
+	padding-left: 250px;
 }
 
 #upgradesbox {
 	
 	background-color: transparent;	
-	width: 90%;
+	width: 80%;
 	height: 40px;
 	margin: 0 auto 0 auto;
-	padding-left: 50px;
+	padding-left: 250px;
 }
 
 #soundtrack{

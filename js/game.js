@@ -6,7 +6,7 @@ setVolume = function(id,vol) {
 //Score Variables
 var score = 0; // starting score
 var highscore = 0; //high score
-var cashpoints = 3000;
+var cashpoints = 250;
 
 var countstart = 11; // start time
 var count=countstart; // countdown timer
@@ -16,15 +16,18 @@ var counter = countstart;
 
 //Alien Variables
 
+var alienrof = 6;
+
+var flockspeed = 50;
 //Player variables and upgrades
 
 var bulletcount = 3;
 var bulletupgradebought = false;
 
-var bulletspeed = -200;
+var bulletspeed = -300;
 var bulletspeedupgradebought = false;
 
-var playerspeed = 200;
+var playerspeed = 170;
 var playerspeedupgradebought = false;
 
 var bulletinterval = 3;
@@ -70,9 +73,9 @@ function addcashpoints () {
 
 function bulletupgrade () {
 	
-	if(cashpoints >= 500 && bulletupgradebought != true){
-	bulletcount = bulletcount + 5;
-	cashpoints = cashpoints - 500;
+	if(cashpoints >= 250 && bulletupgradebought != true){
+	bulletcount = bulletcount + 2;
+	cashpoints = cashpoints - 250;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletcount').innerHTML="2000 : Max Bullet Count";
@@ -82,7 +85,7 @@ function bulletupgrade () {
 	
 	} else if (cashpoints >= 2000 && bulletupgradebought != false) {
 		
-	bulletcount = bulletcount+5;
+	bulletcount = bulletcount+4;
 	cashpoints = cashpoints - 2000;
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletcount').innerHTML="Bullet Count Maxed";
@@ -96,10 +99,10 @@ function bulletupgrade () {
 function bulletspeedupgrade ()
 {
 		
-	if(cashpoints >= 500 && bulletspeedupgradebought != true)
+	if(cashpoints >= 700 && bulletspeedupgradebought != true)
 	{
-	bulletspeed = bulletspeed -100;
-	cashpoints = cashpoints - 500;
+	bulletspeed = bulletspeed -75;
+	cashpoints = cashpoints - 250;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletspeed').innerHTML="2000 : Max Bullet Speed";
@@ -107,10 +110,10 @@ function bulletspeedupgrade ()
 	bulletspeedupgradebought = true;
 	alert('Bullet Speed Bought');
 	
-	} else if (cashpoints >= 2000 && bulletspeedupgradebought != false) {
+	} else if (cashpoints >= 3000 && bulletspeedupgradebought != false) {
 		
-	bulletspeed = bulletspeed -100;
-	cashpoints = cashpoints - 2000;
+	bulletspeed = bulletspeed -75;
+	cashpoints = cashpoints - 3000;
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletspeed').innerHTML="Bullet Speed Maxed";
 	
@@ -122,10 +125,10 @@ function bulletspeedupgrade ()
 function playerspeedupgrade ()
 {
 		
-	if(cashpoints >= 1000 && playerspeedupgradebought != true)
+	if(cashpoints >= 250 && playerspeedupgradebought != true)
 	{
 	playerspeed = playerspeed + 100;
-	cashpoints = cashpoints - 1000;
+	cashpoints = cashpoints - 250;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('playerspeed').innerHTML="3000 : Max Player Speed";
@@ -133,10 +136,10 @@ function playerspeedupgrade ()
 	playerspeedupgradebought = true;
 	alert('Player Speed Bought');
 	
-	} else if (cashpoints >= 3000 && playerspeedupgradebought != false) {
+	} else if (cashpoints >= 2000 && playerspeedupgradebought != false) {
 		
 	playerspeed = playerspeed + 100;
-	cashpoints = cashpoints - 3000;
+	cashpoints = cashpoints - 2000;
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('playerspeed').innerHTML="Player Speed Maxed";
 	
@@ -155,7 +158,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
   this.invulnrable = true; // is invulnerable
   this.dx = 10; this.dy = 0; 
   this.hit = 2; this.lastHit = 0;
-  this.speed = 50; // flocks initial speed
+  this.speed = flockspeed; // flocks initial speed
 
   this.draw = function() {}; // gets drawn to canvas
 
@@ -258,7 +261,7 @@ Alien.prototype.step = function(dt) {
 
 // Alien will fire 10% of the time
 Alien.prototype.fireSometimes = function() {
-      if(Math.random()*100 < 3) {
+      if(Math.random()*100 < alienrof) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
