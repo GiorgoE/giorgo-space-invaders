@@ -9,6 +9,8 @@ var counter = countstart;
 
 var cashpoints = 0;
 
+var bulletcount = 5;
+
 
 
 ///////////Custom Functions////////////
@@ -50,6 +52,8 @@ function addcashpoints () {
 //////////// Upgrade
 
 function shipupgrade () {
+	bulletcount = 15;
+	
 	
 }
 
@@ -222,7 +226,7 @@ Player.prototype.step = function(dt) {
   this.reloading--;
 
  // if fire is pressed and reloading is <= 0 you are allowed to fire X missiles.
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 15) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < bulletcount) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
