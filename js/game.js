@@ -1,15 +1,27 @@
 
+//Score Variables
 var score = 0; // starting score
 var highscore = 0; //high score
+var cashpoints = 0;
 
 var countstart = 11; // start time
 var count=countstart; // countdown timer
-
 var counter = countstart;
 
-var cashpoints = 0;
 
-var bulletcount = 5;
+
+//Alien Variables
+
+//Player variables and upgrades
+
+var bulletcount = 3;
+var bulletupgradebought = false;
+
+var bulletspeed = 1;
+var bulletupgradebought = false;
+
+var playerspeed = 1;
+var playerspeedupgrade = false;
 
 
 
@@ -45,17 +57,48 @@ function timer()
 function addcashpoints () {
 	//Add Cash Points
   cashpoints = cashpoints + score;
-  document.getElementById('cashpoints').innerHTML="Cash Points : " + cashpoints;
+  document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	
 }
 
 //////////// Upgrade
 
-function shipupgrade () {
-	bulletcount = 15;
+function bulletupgrade () {
 	
+	if(cashpoints >= 500 && bulletupgradebought != true){
+	bulletcount = bulletcount + 5;
+	cashpoints = cashpoints - 500;
 	
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('bulletcount').innerHTML="1000 - Max Bullet Count";
+	
+	bulletupgradebought = true;
+	alert('Bullet Count Bought');
+	
+	} else if (cashpoints >= 1000 && bulletupgradebought != false) {
+		
+	bulletcount = bulletcount+5;
+	cashpoints = cashpoints - 1000;
+	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
+	document.getElementById('bulletcount').innerHTML="Bullet Count Maxed";
+	
+	alert('Bullet Count Maxed');
+	
+	}
 }
+
+function bulletspeedupgrade () {
+	if(cashpoints >= 500){
+	bulletcount = 15;
+	}
+}
+
+function playerspeedupgrade () {
+	if(cashpoints >= 500){
+	bulletcount = 15;
+	}
+}
+
 
 
 
