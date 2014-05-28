@@ -1,4 +1,8 @@
 
+setVolume = function(id,vol) {
+    sounds[soundtrack].volume = 0.1; // vol between 0 and 1
+}
+
 //Score Variables
 var score = 0; // starting score
 var highscore = 0; //high score

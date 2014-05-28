@@ -36,7 +36,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Alien Invaders","press s to start",
+    var screen = new GameScreen("VADERS","PRESS S TO START",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
 									 starttimer ();
@@ -46,7 +46,7 @@
   }
 
   function endGame() {
-    var screen = new GameScreen("Game Over","(press S to restart)",
+    var screen = new GameScreen("GAME OVER","(PRESS S TO RESTART)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
 									 starttimer();
@@ -56,7 +56,7 @@
 
 
   function winGame() {
-    var screen = new GameScreen("You Win!","(press S to restart)",
+    var screen = new GameScreen("YOU WIN!","(PRESS S TO START)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
 									 starttimer();
@@ -65,7 +65,7 @@
   }
 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg' }, 
+    GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg', 'aliendie' : 'media/pop.ogg'}, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
                                       { "start": startGame,
