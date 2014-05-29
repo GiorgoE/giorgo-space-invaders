@@ -55,7 +55,10 @@ table {
 
 #gameboard { background-color:transparent; }
 
-#game-wrapper { margin:0 auto 0 auto; width: 1000px; }
+#game-wrapper { 
+				margin:0 auto 0 auto;
+			    width: 1000px;
+			   }
 	  
 body {
 	color: #FFF;
@@ -156,7 +159,9 @@ body {
 	width: 80%;
 	height: 40px;
 	margin: 0 auto 0 auto;
-	padding-left: 250px;
+	padding-left: 7%;
+	min-width:1100px;
+
 }
 
 #upgradesbox {
@@ -165,7 +170,9 @@ body {
 	width: 80%;
 	height: 40px;
 	margin: 0 auto 0 auto;
-	padding-left: 250px;
+	padding-left: 7%;
+	min-width:1100px;
+	
 }
 
 #soundtrack{

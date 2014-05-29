@@ -35,11 +35,13 @@ var bulletinterval = 3;
 ///////////Custom Functions////////////
 //////////////////////////////////////
 
+/////////////////Start timer
+
 function starttimer () // timer wont start until this is run (hopefully)
 {
 	clearInterval(counter);
 	count = countstart;
-	counter = setInterval(timer, 900); //1000 will  run it every 1 second
+	counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 }
 
 //////////// timer
@@ -58,6 +60,18 @@ function timer()
  document.getElementById('countdown').innerHTML="Time Left : " + count;
  
 }
+
+
+
+////////////////High Score
+
+function highscoreupdate(){
+	if (score > highscore) {
+		  highscore = score;
+	  }
+	  // inserts score to html
+	   document.getElementById('highscore').innerHTML="High Score : " + highscore;
+	}
 
 //////////// cashpoints
 
@@ -102,7 +116,7 @@ function bulletspeedupgrade ()
 	if(cashpoints >= 700 && bulletspeedupgradebought != true)
 	{
 	bulletspeed = bulletspeed -75;
-	cashpoints = cashpoints - 250;
+	cashpoints = cashpoints - 700;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
 	document.getElementById('bulletspeed').innerHTML="2000 : Max Bullet Speed";
@@ -291,14 +305,11 @@ Player.prototype.die = function() {
   
   
   //added high score at lose game
-	  if (score > highscore) {
-		  highscore = score;
-	  }
-	  // inserts score to html
-	   document.getElementById('highscore').innerHTML="High Score : " + highscore;
+  highscoreupdate();
+	  
 	   
-	  // score reset
-	  score = 0;
+  // score reset
+  score = 0;
 }
 
 // sets what the keys do, adds constraints
