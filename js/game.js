@@ -229,7 +229,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
 }
 
 
-// dont know yet
+// alien options
 var Alien = function Alien(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
@@ -337,19 +337,22 @@ Player.prototype.step = function(dt) {
   return true;
 }
 
-
+//missile options
 var Missile = function Missile(opts) {
    this.dy = opts.dy;
    this.player = opts.player;
 }
 
+//draw missile sprite to canvas
 Missile.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'missile',this.x,this.y);
 }
 
+//missile acceleration
 Missile.prototype.step = function(dt) {
    this.y += this.dy * dt;
 
+   //if missile collides with enemy kill enemy
    var enemy = this.board.collide(this);
    if(enemy) { 
      enemy.die();
@@ -358,6 +361,7 @@ Missile.prototype.step = function(dt) {
    return (this.y < 0 || this.y > Game.height) ? false : true;
 }
 
+//what happens when the missile dies, remove from board
 Missile.prototype.die = function() {
   if(this.player) this.board.missiles--;
   if(this.board.missiles < 0) this.board.missiles=0;
