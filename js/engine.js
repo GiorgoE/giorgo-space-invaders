@@ -134,7 +134,7 @@ var GameBoard = function GameBoard(level_number) {
 	// starttimer () // possible place to put start timer
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
-                                 Game.width/2, // X
+                                  Game.width/2, // X
                                  Game.height - Sprites.map['player'].h - 10); // Y
 
     var flock = this.add(new AlienFlock());

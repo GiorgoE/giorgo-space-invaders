@@ -86,7 +86,7 @@
     var screen = new GameScreen("YOU WIN!","(PRESS S TO START)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
-									 starttimer();
+									 //starttimer();
                                  });
     Game.loadBoard(screen);
   }

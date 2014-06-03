@@ -1,7 +1,4 @@
 
-setVolume = function(id,vol) {
-    sounds[soundtrack].volume = 0.1; // vol between 0 and 1
-}
 
 //Score Variables
 var score = 0; // starting score
@@ -203,7 +200,7 @@ var AlienFlock = function AlienFlock() { // the whole block of aliens
   }
   
 
-  // Dont know what this does yet
+  // Increase speed as aliens die
   this.step = function(dt) { 
     if(this.hit && this.hit != this.lastHit) {
       this.lastHit = this.hit;
@@ -256,7 +253,7 @@ Alien.prototype.die = function() {
   
 }
 
-// dont know yet
+// tells the flock how to move within boundaries
 Alien.prototype.step = function(dt) {
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
@@ -283,7 +280,7 @@ Alien.prototype.fireSometimes = function() {
 }
 
 
-//dont know yet
+//time between bullets being allowed to be fired
 var Player = function Player(opts) { 
   this.reloading = 1;
 }
