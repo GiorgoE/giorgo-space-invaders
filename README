@@ -1,1 +1,54 @@
-I'm just editing a cool little space invaders game we were given, it has started very basic but hopefully when I'm finished it should have some shiny new stuff in there!
+VADERS
+
+Controls
+
+move left : Left key
+move right : Right key
+fire : Space bar
+start game : S
+
+Hold space to fire continuously 
+
+This is not an easy game.
+
+--------------
+
+
+Hey this is my take on a Space Invaders game we were given, I tried to focus on making you actually be able to enjoy playing the game so I gave it:
+
+
+------------------------
+
+
+EDIT: 05 / 06 / 2014
+Changed a few things since I made my mind map:
+
+- Enemies come down slower, it was never their intention to kill you by crushing you 
+
+- There is now a 9% chance that killing an enemy will give you 1 second extra time making it possible to beat the new switzerland and'new zealand' level which is hard. You're going to need lots of upgrades to beat it. 
+
+
+------------------------
+
+- A timer to give that simple sense of suspense
+
+- Score related to time so that the quicker you kill the aliens the more points you get
+
+- High scores to evoke competition.
+
+- A cash and upgrades system, you earn cash by getting points and when you die the points are converted. You can then spend that cash on upgrades which are crucial in helping you complete the further levels.
+
+- You start with 250 cash, spend it wisely.
+
+- A few custom levels just to give it some variety.
+
+- I slightly changed the sprite sheets but just added a few more different coloured aliens. Nothing too heavy because I like the original style, I just wanted to show I could do it.
+
+- Clever scrolling background by just using a gif. 
+Bill Gates said “I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.” 
+
+- 8 bit theme music
+
+- Changed start button to S because space bar was always starting the game when people were firing. 
+
+- If you want any hope of completing the levels take advantage of the fact that you can hold down space bar for continuous firing.

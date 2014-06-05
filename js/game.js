@@ -116,7 +116,7 @@ function bulletspeedupgrade ()
 	cashpoints = cashpoints - 700;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
-	document.getElementById('bulletspeed').innerHTML="2000 : Max Bullet Speed";
+	document.getElementById('bulletspeed').innerHTML="3000 : Max Bullet Speed";
 	
 	bulletspeedupgradebought = true;
 	alert('Bullet Speed Bought');
@@ -142,7 +142,7 @@ function playerspeedupgrade ()
 	cashpoints = cashpoints - 250;
 	
 	document.getElementById('cashpoints').innerHTML="Cash : " + cashpoints;
-	document.getElementById('playerspeed').innerHTML="3000 : Max Player Speed";
+	document.getElementById('playerspeed').innerHTML="2000 : Max Player Speed";
 	
 	playerspeedupgradebought = true;
 	alert('Player Speed Bought');
@@ -247,6 +247,9 @@ Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
+  if(Math.random()*100 < 9){
+	  count = count + 1;
+  }
   score = score + (1*count);
   document.getElementById('score').innerHTML="Score : " + score;
   
@@ -256,7 +259,7 @@ Alien.prototype.die = function() {
 // tells the flock how to move within boundaries
 Alien.prototype.step = function(dt) {
   this.mx += dt * this.flock.dx;
-  this.y += this.flock.dy;
+  this.y += ((this.flock.dy)/4);
   if(Math.abs(this.mx) > 10) {
     if(this.y == this.flock.max_y[this.x]) {
       this.fireSometimes();
